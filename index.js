@@ -1,5 +1,5 @@
 const signUpBtn = document.getElementById('signIn');
 
 signUpBtn.addEventListener('click', () => {
-    window.location.replace("/.auth/login/aad?post_login_redirect_uri=https://zealous-grass-0ea7c0c03.2.azurestaticapps.net/authenticated/");
+    window.location.replace("/.auth/login/aad?post_login_redirect_uri=https://calm-bush-04d27fd10.3.azurestaticapps.net/authenticated/");
 });
