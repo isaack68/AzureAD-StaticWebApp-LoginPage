@@ -1,38 +1,24 @@
 {
-    "routes": [
-        {
-            "route": "/authenticated/*",
-            "allowedRoles": [ "authenticated" ]
-        },
-        {
-            "route": "/login",
-            "redirect": "/.auth/login/aad?post_login_redirect_uri=https://https://ambitious-pond-0c1d1fa10.3.azurestaticapps.net/authenticated/"
-        },
-        {
-            "route": "/logout",
-            "redirect": "/.auth/logout"
-        }
-
-    ],
-    "responseOverrides": {
-        "401": {
-          "statusCode": 302,
-          "redirect": "/"
-        }
-    },
-    "auth": {
-        "identityProviders": {
-            "azureActiveDirectory": {
-                "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-                "registration": {
-                    "openIdIssuer": "https://login.microsoftonline.com/121b91ec-3a75-4a20-a53d-2c3fc789a268",
-                    "clientIdSettingName": "ENTRA_CLIENT_ID",
-                    "clientSecretSettingName": "ENTRA_CLIENT_SECRET"
-                }
+  "auth": {
+    "identityProviders": {
+      "customOpenIdConnectProviders": {
+        "aadb2c": {
+          "registration": {
+            "clientIdSettingName": "ENTRA_CLIENT_ID",
+            "clientCredential": {
+              "clientSecretSettingName": "ENTRA_CLIENT_SECRET"
+            },
+            "openIdConnectConfiguration": {
+              "wellKnownOpenIdConfiguration": "https://koletechb2c.b2clogin.com/koletechb2c.onmicrosoft.com/B2C_1_RegistrationSignIn/v2.0/.well-known/openid-configuration"
             }
+          },
+          "login": {
+            "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+            "scopes": [],
+            "loginParameterNames": []
+          }
         }
-    },
-    "globalHeaders": {
-        "Cache-Control": "no-cache"
+      }
     }
+  }
 }
